@@ -1,14 +1,15 @@
 import './App.css';
 
+const initialList = [
+  {
+    id: 'a',
+    name: 'Medias',
+  },
+  { id: 'b', name: 'Gorras' },
+  { id: 'c', name: 'Remera' },
+];
+
 function App() {
-  const list = [
-    {
-      id: 'a',
-      name: 'Medias',
-    },
-    { id: 'b', name: 'Gorras' },
-    { id: 'c', name: 'Remera' },
-  ];
   return (
     <div className='App'>
       <h1>Regalos:</h1>
