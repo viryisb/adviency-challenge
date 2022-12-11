@@ -19,7 +19,10 @@ function App() {
     setName(event.target.value);
   };
 
-  const handleAdd = () => {};
+  const handleAdd = () => {
+    const newList = list.concat({ name });
+    setList(newList);
+  };
 
   return (
     <div className='App'>
