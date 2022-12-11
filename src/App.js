@@ -1,4 +1,5 @@
 import './App.css';
+import useState from 'react';
 
 const initialList = [
   {
@@ -11,8 +12,16 @@ const initialList = [
 
 function App() {
   const [list, setList] = useState(initialList);
+  const handleChange = () => {};
+  const handleAdd = () => {};
   return (
     <div className='App'>
+      <div>
+        <input type='text' onChange={handleChange} />
+        <button type='button' onClick={handleAdd}>
+          Add
+        </button>
+      </div>
       <h1>Regalos:</h1>
       <ul>
         {list.map((item) => (
