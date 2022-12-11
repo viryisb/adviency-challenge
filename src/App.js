@@ -10,6 +10,7 @@ const initialList = [
 ];
 
 function App() {
+  const [list, setList] = useState(initialList);
   return (
     <div className='App'>
       <h1>Regalos:</h1>
