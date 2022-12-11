@@ -1,13 +1,21 @@
 import './App.css';
 
 function App() {
+  const list = [
+    {
+      id: 'a',
+      name: 'Medias',
+    },
+    { id: 'b', name: 'Gorras' },
+    { id: 'c', name: 'Remera' },
+  ];
   return (
     <div className='App'>
       <h1>Regalos:</h1>
       <ul>
-        <li>Medias</li>
-        <li>Gorras</li>
-        <li>Tuki</li>
+        {list.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
       </ul>
     </div>
   );
