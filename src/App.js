@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialList = [
   {
@@ -20,8 +21,11 @@ function App() {
   };
 
   const handleAdd = () => {
-    const newList = list.concat({ name });
+    const newList = list.concat({ name, id: uuidv4() });
+
     setList(newList);
+
+    setName('');
   };
 
   return (
@@ -35,7 +39,7 @@ function App() {
       </ul>
 
       <div>
-        <input type='text' onChange={handleChange} />
+        <input type='text' value={name} onChange={handleChange} />
         <button type='button' onClick={handleAdd}>
           Add
         </button>
