@@ -11,7 +11,21 @@ const initialList = [
   { id: 'b', name: 'Gorras' },
   { id: 'c', name: 'Remera' },
 ];
-
+const AddItem = ({ name, onChange, onAdd }) => (
+  <div>
+    <input type='text' value={name} onChange={onChange} />
+    <button type='button' onClick={onAdd}>
+      Add
+    </button>
+  </div>
+);
+const List = ({ list }) => (
+  <ul>
+    {list.map((item) => (
+      <li key={item.id}>{item.name}</li>
+    ))}
+  </ul>
+);
 function App() {
   const [list, setList] = useState(initialList);
   const [name, setName] = useState('');
@@ -32,18 +46,8 @@ function App() {
     <div className='App'>
       <h1>Regalos:</h1>
 
-      <ul>
-        {list.map((item) => (
-          <li key={item.id}>{item.name}</li>
-        ))}
-      </ul>
-
-      <div>
-        <input type='text' value={name} onChange={handleChange} />
-        <button type='button' onClick={handleAdd}>
-          Add
-        </button>
-      </div>
+      <List list={list} />
+      <AddItem name={name} onChange={handleChange} onAdd={handleAdd} />
     </div>
   );
 }
