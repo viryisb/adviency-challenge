@@ -11,6 +11,10 @@ const initialList = [
   { id: 'b', name: 'Gorras' },
   { id: 'c', name: 'Remera' },
 ];
+const handleRemove = (id) => {
+  console.log(id);
+};
+
 const AddItem = ({ name, onChange, onAdd }) => (
   <div>
     <input type='text' value={name} onChange={onChange} />
@@ -22,7 +26,12 @@ const AddItem = ({ name, onChange, onAdd }) => (
 const List = ({ list }) => (
   <ul>
     {list.map((item) => (
-      <li key={item.id}>{item.name}</li>
+      <li key={item.id}>
+        {item.name}
+        <button type='button' onClick={() => handleRemove(item.id)}>
+          Remove
+        </button>
+      </li>
     ))}
   </ul>
 );
