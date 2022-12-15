@@ -11,9 +11,6 @@ const initialList = [
   { id: 'b', name: 'Gorras' },
   { id: 'c', name: 'Remera' },
 ];
-const handleRemove = (id) => {
-  console.log(id);
-};
 
 const AddItem = ({ name, onChange, onAdd }) => (
   <div>
@@ -23,15 +20,18 @@ const AddItem = ({ name, onChange, onAdd }) => (
     </button>
   </div>
 );
-const List = ({ list }) => (
+const Item = ({ item, onRemove }) => (
+  <li key={item.id}>
+    {item.name}
+    <button type='button' onClick={() => onRemove(item.id)}>
+      Remove
+    </button>
+  </li>
+);
+const List = ({ list, onRemove }) => (
   <ul>
     {list.map((item) => (
-      <li key={item.id}>
-        {item.name}
-        <button type='button' onClick={() => handleRemove(item.id)}>
-          Remove
-        </button>
-      </li>
+      <Item key={item.id} item={item} onRemove={onRemove} />
     ))}
   </ul>
 );
@@ -51,11 +51,16 @@ function App() {
     setName('');
   };
 
+  const handleRemove = (id) => {
+    const newList = list.filter((item) => item.id !== id);
+    setList(newList);
+  };
+
   return (
     <div className='App'>
       <h1>Regalos:</h1>
 
-      <List list={list} />
+      <List list={list} onRemove={handleRemove} />
       <AddItem name={name} onChange={handleChange} onAdd={handleAdd} />
     </div>
   );
