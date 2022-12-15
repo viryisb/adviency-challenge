@@ -1,6 +1,8 @@
 import './App.css';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import List from './List';
+import AddItem from './AddItem';
 
 const initialList = [
   {
@@ -12,29 +14,6 @@ const initialList = [
   { id: 'c', name: 'Remera' },
 ];
 
-const AddItem = ({ name, onChange, onAdd }) => (
-  <div>
-    <input type='text' value={name} onChange={onChange} />
-    <button type='button' onClick={onAdd}>
-      Add
-    </button>
-  </div>
-);
-const Item = ({ item, onRemove }) => (
-  <li key={item.id}>
-    {item.name}
-    <button type='button' onClick={() => onRemove(item.id)}>
-      Remove
-    </button>
-  </li>
-);
-const List = ({ list, onRemove }) => (
-  <ul>
-    {list.map((item) => (
-      <Item key={item.id} item={item} onRemove={onRemove} />
-    ))}
-  </ul>
-);
 function App() {
   const [list, setList] = useState(initialList);
   const [name, setName] = useState('');
@@ -51,17 +30,22 @@ function App() {
     setName('');
   };
 
-  const handleRemove = (id) => {
+  const handleRemoveItem = (id) => {
     const newList = list.filter((item) => item.id !== id);
     setList(newList);
   };
-
+  const handleRemoveAll = () => {
+    setList([]);
+  };
   return (
     <div className='App'>
       <h1>Regalos:</h1>
 
-      <List list={list} onRemove={handleRemove} />
+      <List list={list} onRemove={handleRemoveItem} />
       <AddItem name={name} onChange={handleChange} onAdd={handleAdd} />
+      <button type='button' onClick={handleRemoveAll}>
+        remove all
+      </button>
     </div>
   );
 }
