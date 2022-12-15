@@ -13,7 +13,7 @@ const initialList = [
   { id: 'b', name: 'Gorras' },
   { id: 'c', name: 'Remera' },
 ];
-
+const message = 'No hay ningún regalo en la lista. Comienza a agregar';
 function App() {
   const [list, setList] = useState(initialList);
   const [name, setName] = useState('');
@@ -41,7 +41,11 @@ function App() {
     <div className='App'>
       <h1>Regalos:</h1>
 
-      <List list={list} onRemove={handleRemoveItem} />
+      {list ? (
+        <p>{message}</p>
+      ) : (
+        <List list={list} onRemove={handleRemoveItem} />
+      )}
       <AddItem name={name} onChange={handleChange} onAdd={handleAdd} />
       <button type='button' onClick={handleRemoveAll}>
         remove all
